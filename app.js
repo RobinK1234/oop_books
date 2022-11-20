@@ -7,7 +7,15 @@ const form = document.querySelector('#add-book');
 
 // events
 form.addEventListener('submit', addBook);
+document.addEventListener(`DOMContentLoaded`, getBooks);
 
+function getBooks(){
+    let books = ls.getData(`books`)
+    for (let i = 0; i < books.length; i++){
+        let book = books[i];
+        ui.addBook(book)
+    }
+}
 
 function addBook(event) {
     // get form input value
