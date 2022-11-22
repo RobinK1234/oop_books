@@ -4,10 +4,12 @@ const ls = new LS()
 
 // elements
 const form = document.querySelector('#add-book');
+const  bookList = document.querySelector('#book-list')
 
 // events
 form.addEventListener('submit', addBook);
 document.addEventListener(`DOMContentLoaded`, getBooks);
+bookList.addEventListener('click', delBook)
 
 function getBooks(){
     let books = ls.getData(`books`)
@@ -35,14 +37,17 @@ function addBook(event) {
     // add book to LS
     ls.addBook(book)
 
-
-
     titleInput.value = "";
     authorInput.value = "";
     isbnInput.value = "";
     event.preventDefault();
 }
+function delBook(event){
+    if(event.target.textContent === 'X'){
+        const book = ui.getBook(event.target)
+        if(ui.delBook(event.target) === true){
+            ls.delBook(book)
+        }
+    }
+}
 
-
-    //add task value to localStorage
-    //addBookToLS(book)

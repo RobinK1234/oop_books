@@ -1,5 +1,3 @@
-
-
 class UI {
     // help function to add DOM element
     addUIElement(name, classname = ``, textcontent = ``, attributes = {}){
@@ -19,8 +17,6 @@ class UI {
         }
         return element
     }
-
-
 
     addBook(book){
         // create tr element
@@ -45,4 +41,20 @@ class UI {
         const  booksList = document.querySelector('#book-list');
         booksList.appendChild(tr);
     }
+    delBook(click){
+        if(confirm('Do you realy want to delete this book?')) {
+            click.parentElement.parentElement.remove()
+            return true
+        } else {
+            return false
+        }
+    }
+    getBook(click) {
+        let isbn = click.parentElement.previousElementSibling.textContent
+        let author = click.parentElement.previousElementSibling.previousElementSibling.textContent
+        let title = click.parentElement.previousElementSibling.previousElementSibling.previousElementSibling.textContent
+        const book = new Book(title, author, isbn)
+        return book
+    }
 }
+
